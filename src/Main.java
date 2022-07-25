@@ -38,11 +38,15 @@ public class Main {
                 if (productNumber < 0 || productNumber > products.length) {
                     System.out.println("Неккоректно введен номер пункта!");
                     continue;
-                } else if (productQuantity < 0) {
-                    System.out.println("Некорректно введено количество продуктов!");
-                    continue;
                 }
+//      Удален блок кода с проверкой отрицательного значения количества продукта.
+//      Теперь можем убирать часть товаров из корзины.
                 int currentPrice = prices[productNumber];
+//       Добавлена возможность обнулить количество продукта в корзине:
+                if (productQuantity==0){
+                    quantityInBasket[productNumber] = 0;
+                    System.out.println("Обнуляем количество товаров!");
+                }
                 sum += (productQuantity * currentPrice);
                 quantityInBasket[productNumber] += productQuantity;
                 wasChosen[productNumber] = true;
