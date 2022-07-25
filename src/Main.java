@@ -5,8 +5,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         String[] products = {"Хлеб", "Яйца", "Молоко", "Творог", "Сахар", "Мука", "Томаты", "Яблоки"};
+        String[] productsSale =  {"Творог", "Томаты", "Яблоки"};
         int[] prices = {70, 90, 80, 150, 80, 120, 300, 230};
         boolean[] wasChosen = new boolean[products.length];
+        boolean onSale = false;
         int[] quantityInBasket = new int[products.length];
         int sum = 0;
 
@@ -36,14 +38,31 @@ public class Main {
                 continue;
             }
                 if (productNumber < 0 || productNumber > products.length) {
-                    System.out.println("Неккоректно введен номер пункта!");
+                    System.out.println("Некорректно введен номер пункта!");
                     continue;
                 } else if (productQuantity < 0) {
                     System.out.println("Некорректно введено количество продуктов!");
                     continue;
                 }
                 int currentPrice = prices[productNumber];
-                sum += (productQuantity * currentPrice);
+            if (productQuantity >= 3) {
+                for (int g = 0; g < productsSale.length; g++) {
+                    if (productsSale[g].equals(products[productNumber])) {
+                            int productQuantitySale = (productQuantity % 3) + ((productQuantity / 3) * 2);
+                            sum = sum + (productQuantitySale * currentPrice);
+                            System.out.println("Вы приобрели продукт " + products[productNumber] + " по акции \"3 по цене 2\"!");
+                            onSale = true;
+                            break;
+                    } else if (g == productsSale.length - 1){
+                        sum += (productQuantity * currentPrice);
+                    } else {
+                        continue;
+                    }
+
+                }
+            }
+
+
                 quantityInBasket[productNumber] += productQuantity;
                 wasChosen[productNumber] = true;
                 System.out.println("Добавлено в корзину: " + products[productNumber] + ", " + productQuantity + " уп.");
@@ -67,7 +86,12 @@ public class Main {
             System.out.println("пусто.");
         } else {
             System.out.println("-------------------------------------");
-            System.out.println("ИТОГО: " + sum + " руб.");
+            System.out.print("ИТОГО: " + sum + " руб.");
+            if (onSale) {
+                System.out.println(" с учетом акции \"3 по цене 2\"!");
+            } else {
+                System.out.println("");
+            }
         }
     }
 }
