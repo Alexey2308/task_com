@@ -44,14 +44,12 @@ public class Main {
 //      Удален блок кода с проверкой отрицательного значения количества продукта.
 //      Теперь можем убирать часть товаров из корзины.
                 int currentPrice = prices[productNumber];
-<<<<<<< HEAD
 //       Добавлена возможность обнулить количество продукта в корзине:
                 if (productQuantity==0){
                     quantityInBasket[productNumber] = 0;
                     System.out.println("Обнуляем количество товаров!");
                 }
                 sum += (productQuantity * currentPrice);
-=======
             if (productQuantity >= 3) {
                 for (int g = 0; g < productsSale.length; g++) {
                     if (productsSale[g].equals(products[productNumber])) {
@@ -70,7 +68,6 @@ public class Main {
             }
 
 
->>>>>>> main
                 quantityInBasket[productNumber] += productQuantity;
                 wasChosen[productNumber] = true;
                 System.out.println("Добавлено в корзину: " + products[productNumber] + ", " + productQuantity + " уп.");
