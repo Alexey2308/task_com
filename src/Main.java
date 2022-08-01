@@ -5,7 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         String[] products = {"Хлеб", "Яйца", "Молоко", "Творог", "Сахар", "Мука", "Томаты", "Яблоки"};
-        String[] productsSale =  {"Творог", "Томаты", "Яблоки"};
+        String[] productsSale = {"Творог", "Томаты", "Яблоки"};
         int[] prices = {70, 90, 80, 150, 80, 120, 300, 230};
         boolean[] wasChosen = new boolean[products.length];
         boolean onSale = false;
@@ -37,28 +37,28 @@ public class Main {
                 System.out.println("Некорректный ввод!");
                 continue;
             }
-                if (productNumber < 0 || productNumber > products.length) {
-                    System.out.println("Некорректно введен номер пункта!");
-                    continue;
-                }
+            if (productNumber < 0 || productNumber > products.length) {
+                System.out.println("Некорректно введен номер пункта!");
+                continue;
+            }
 //      Удален блок кода с проверкой отрицательного значения количества продукта.
 //      Теперь можем убирать часть товаров из корзины.
-                int currentPrice = prices[productNumber];
+            int currentPrice = prices[productNumber];
 //       Добавлена возможность обнулить количество продукта в корзине:
-                if (productQuantity==0){
-                    quantityInBasket[productNumber] = 0;
-                    System.out.println("Обнуляем количество товаров!");
-                }
-                sum += (productQuantity * currentPrice);
+            if (productQuantity == 0) {
+                quantityInBasket[productNumber] = 0;
+                System.out.println("Обнуляем количество товаров!");
+            }
+            sum += (productQuantity * currentPrice);
             if (productQuantity >= 3) {
                 for (int g = 0; g < productsSale.length; g++) {
                     if (productsSale[g].equals(products[productNumber])) {
-                            int productQuantitySale = (productQuantity % 3) + ((productQuantity / 3) * 2);
-                            sum = sum + (productQuantitySale * currentPrice);
-                            System.out.println("Вы приобрели продукт " + products[productNumber] + " по акции \"3 по цене 2\"!");
-                            onSale = true;
-                            break;
-                    } else if (g == productsSale.length - 1){
+                        int productQuantitySale = (productQuantity % 3) + ((productQuantity / 3) * 2);
+                        sum = sum + (productQuantitySale * currentPrice);
+                        System.out.println("Вы приобрели продукт " + products[productNumber] + " по акции \"3 по цене 2\"!");
+                        onSale = true;
+                        break;
+                    } else if (g == productsSale.length - 1) {
                         sum += (productQuantity * currentPrice);
                     } else {
                         continue;
@@ -68,9 +68,9 @@ public class Main {
             }
 
 
-                quantityInBasket[productNumber] += productQuantity;
-                wasChosen[productNumber] = true;
-                System.out.println("Добавлено в корзину: " + products[productNumber] + ", " + productQuantity + " уп.");
+            quantityInBasket[productNumber] += productQuantity;
+            wasChosen[productNumber] = true;
+            System.out.println("Добавлено в корзину: " + products[productNumber] + ", " + productQuantity + " уп.");
 
         }
         System.out.println("В Вашей корзине сейчас:");
